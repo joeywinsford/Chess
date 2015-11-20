@@ -21,7 +21,7 @@ namespace ChessTests
 
             session.ReceiveInput(new StringSessionCommand(command));
 
-            var receivedInput = session.Inputs.First();
+            var receivedInput = session.CommandHistory.First();
             Assert.IsType<StringSessionCommand>(receivedInput);
             Assert.Equal(command, ((StringSessionCommand)receivedInput).Command);
         }

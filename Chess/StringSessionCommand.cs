@@ -8,5 +8,8 @@
         }
 
         public string Command { get; }
+        public void Run(Session session)
+        {
+        }
     }
 }
