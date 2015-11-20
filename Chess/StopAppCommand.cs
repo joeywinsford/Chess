@@ -6,5 +6,7 @@
         {
             app.Stop(); 
         }
+
+        public string CommandName => "Stop App";
     }
 }

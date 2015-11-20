@@ -2,16 +2,16 @@
 {
     public class UnknownAppCommand : IAppCommand
     {
-        private readonly string _input;
-
         public UnknownAppCommand(string input)
         {
-            this._input = input;
+            CommandName = input;
         }
 
         public void Run(ChessApp app)
         {
-            app.Output.ReportUnknownCommandError(_input);
+            app.Output.ReportUnknownCommandError(CommandName);
         }
+
+        public string CommandName { get; }
     }
 }
