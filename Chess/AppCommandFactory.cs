@@ -4,13 +4,13 @@ namespace Chess
 {
     public class AppCommandFactory
     {
-        private const string ExitInput = "exit";
+        private const string Stop = "stop";
 
         public IAppCommand Create(string input)
         {
-            if (input.Equals(ExitInput, StringComparison.OrdinalIgnoreCase))
+            if (input.Equals(Stop, StringComparison.OrdinalIgnoreCase))
             {
-                return new ExitAppCommand();
+                return new StopAppCommand();
             }
             return null;
         }

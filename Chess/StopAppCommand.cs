@@ -1,10 +1,10 @@
 ﻿namespace Chess
 {
-    public class ExitAppCommand : IAppCommand
+    public class StopAppCommand : IAppCommand
     {
         public void Run(ChessApp app)
         {
-            app.Stop();
+            app.Stop(); 
         }
     }
 }

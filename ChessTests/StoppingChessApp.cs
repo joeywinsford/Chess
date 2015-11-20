@@ -9,7 +9,7 @@ namespace ChessTests
         public void AppIsNotRunning()
         {
             var app = new ChessApp();
-            app.ReceiveInput(new ExitAppCommand());
+            app.ReceiveInput(new StopAppCommand());
             Assert.False(app.IsRunning);
         }
     }

@@ -13,12 +13,13 @@ namespace ChessTests
         }
 
         [Theory]
-        [InlineData("Exit")]
-        [InlineData("exit")]
+        [InlineData("Stop")]
+        [InlineData("stop")]
+        [InlineData("STOP")]
         public void ExitInputResolvesToExitCommand(string exitInput)
         {
             var command = _commandFactory.Create(exitInput);
-            Assert.IsType<ExitAppCommand>(command);
+            Assert.IsType<StopAppCommand>(command);
         }
     }
 }
