@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Chess;
+﻿using Chess;
 using Xunit;
 
 namespace ChessTests
@@ -14,7 +9,7 @@ namespace ChessTests
         public void SessionIsNotRunning()
         {
             var session = new Session();
-            session.ReceiveInput(new Input("Exit"));
+            session.ReceiveInput(new ExitSessionCommand());
             Assert.False(session.IsRunning);
         }
     }

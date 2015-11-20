@@ -4,26 +4,16 @@ namespace Chess
 {
     public class Session
     {
-        public List<Input> Inputs { get; } = new List<Input>();
+        public List<ISessionCommand> Inputs { get; } = new List<ISessionCommand>();
         public bool IsRunning { get; private set; } = true;
 
-        public void ReceiveInput(Input input)
+        public void ReceiveInput(ISessionCommand sessionCommand)
         {
-            Inputs.Add(input);
-            if (input.Command == "Exit")
+            Inputs.Add(sessionCommand);
+            if (sessionCommand is ExitSessionCommand)
             {
                 IsRunning = false;
             }
         }
-    }
-
-    public class Input
-    {
-        public Input(string command)
-        {
-            Command = command;
-        }
-
-        public string Command { get; private set; }
     }
 }

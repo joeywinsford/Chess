@@ -19,9 +19,11 @@ namespace ChessTests
             var command = "Start Game";
             var session = new Session();
 
-            session.ReceiveInput(new Input(command));
+            session.ReceiveInput(new StringSessionCommand(command));
 
-            Assert.Equal(command, session.Inputs.First().Command);
+            var receivedInput = session.Inputs.First();
+            Assert.IsType<StringSessionCommand>(receivedInput);
+            Assert.Equal(command, ((StringSessionCommand)receivedInput).Command);
         }
     }
 }

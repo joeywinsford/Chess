@@ -59,6 +59,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConvertingStringsToSessionCommands.cs" />
     <Compile Include="EndingASession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StartingANewGameSession.cs" />

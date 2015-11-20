@@ -8,11 +8,12 @@ namespace ChessCLI
         public static void Main(string[] args)
         {
             var session = new Session();
+            var interpreter = new StringInputInterpreter();
 
             while (session.IsRunning)
             {
-                var input = new Input(Console.ReadLine());
-                session.ReceiveInput(input);
+                var command = interpreter.Resolve(Console.ReadLine());
+                session.ReceiveInput(command);
             }
         }
     }
