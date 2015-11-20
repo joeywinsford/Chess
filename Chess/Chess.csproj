@@ -40,12 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExitSessionCommand.cs" />
-    <Compile Include="ISessionCommand.cs" />
+    <Compile Include="ExitAppCommand.cs" />
+    <Compile Include="IAppCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Session.cs" />
-    <Compile Include="StringInputInterpreter.cs" />
-    <Compile Include="StringSessionCommand.cs" />
+    <Compile Include="ChessApp.cs" />
+    <Compile Include="AppCommandFactory.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

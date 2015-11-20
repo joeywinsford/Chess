@@ -2,17 +2,17 @@
 
 namespace Chess
 {
-    public class StringInputInterpreter
+    public class AppCommandFactory
     {
         private const string ExitInput = "exit";
 
-        public ISessionCommand Resolve(string input)
+        public IAppCommand Create(string input)
         {
             if (input.Equals(ExitInput, StringComparison.OrdinalIgnoreCase))
             {
-                return new ExitSessionCommand();
+                return new ExitAppCommand();
             }
-            return new StringSessionCommand(input);
+            return null;
         }
     }
 }

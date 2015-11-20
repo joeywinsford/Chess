@@ -7,13 +7,13 @@ namespace ChessCLI
     {
         public static void Main(string[] args)
         {
-            var session = new Session();
-            var interpreter = new StringInputInterpreter();
+            var app = new ChessApp();
+            var interpreter = new AppCommandFactory();
 
-            while (session.IsRunning)
+            while (app.IsRunning)
             {
-                var command = interpreter.Resolve(Console.ReadLine());
-                session.ReceiveInput(command);
+                var command = interpreter.Create(Console.ReadLine());
+                app.ReceiveInput(command);
             }
         }
     }

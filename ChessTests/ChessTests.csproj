@@ -59,10 +59,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConvertingStringsToSessionCommands.cs" />
-    <Compile Include="EndingASession.cs" />
+    <Compile Include="ConvertingStringsToAppCommands.cs" />
+    <Compile Include="StoppingChessApp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StartingANewGameSession.cs" />
+    <Compile Include="StartingChessApp.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

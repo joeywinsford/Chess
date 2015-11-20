@@ -2,12 +2,12 @@
 
 namespace Chess
 {
-    public class Session
+    public class ChessApp
     {
-        public List<ISessionCommand> CommandHistory { get; } = new List<ISessionCommand>();
+        public List<IAppCommand> CommandHistory { get; } = new List<IAppCommand>();
         public bool IsRunning { get; private set; } = true;
 
-        public void ReceiveInput(ISessionCommand command)
+        public void ReceiveInput(IAppCommand command)
         {
             CommandHistory.Add(command);
             command.Run(this);
