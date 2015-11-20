@@ -7,6 +7,13 @@ namespace ChessTests
     public class StartingANewGameSession
     {
         [Fact]
+        public void NewSessionsAreRunning()
+        {
+            var session = new Session();
+            Assert.True(session.IsRunning);
+        }
+
+        [Fact]
         public void SessionAcceptsInput()
         {
             var command = "Start Game";

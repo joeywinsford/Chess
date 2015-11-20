@@ -6,11 +6,8 @@ namespace Chess
 {
     public class Session
     {
-        public Session()
-        {
-        }
-
         public List<Input> Inputs { get; } = new List<Input>();
+        public bool IsRunning { get; } = true;
 
         public void ReceiveInput(Input input)
         {
