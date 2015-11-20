@@ -10,7 +10,7 @@ namespace ChessTests
 
         public StoppingChessApp()
         {
-            _app = new ChessApp();
+            _app = TestAppFactory.Create();
             _commandFactory = new AppCommandFactory();
         }
 

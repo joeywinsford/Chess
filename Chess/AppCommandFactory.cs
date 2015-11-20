@@ -12,7 +12,7 @@ namespace Chess
             {
                 return new StopAppCommand();
             }
-            return null;
+            return new UnknownAppCommand(input);
         }
     }
 }

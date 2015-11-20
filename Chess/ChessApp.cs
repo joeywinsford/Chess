@@ -4,6 +4,13 @@ namespace Chess
 {
     public class ChessApp
     {
+        public ChessApp(IAppOutput output)
+        {
+            Output = output;
+        }
+
+        public IAppOutput Output { get; set; }
+
         public List<IAppCommand> CommandHistory { get; } = new List<IAppCommand>();
         public bool IsRunning { get; private set; } = true;
 
@@ -17,5 +24,10 @@ namespace Chess
         {
             IsRunning = false;
         }
+    }
+
+    public interface IAppOutput
+    {
+        void ReportUnknownCommandError(string unknownCommandName);
     }
 }

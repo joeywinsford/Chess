@@ -9,7 +9,7 @@ namespace ChessTests
         [Fact]
         public void NewSessionsAreRunning()
         {
-            var app = new ChessApp();
+            var app = TestAppFactory.Create();
             Assert.True(app.IsRunning);
         }
     }
