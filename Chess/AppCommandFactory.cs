@@ -6,7 +6,7 @@ namespace Chess
     {
         private const string Stop = "stop";
 
-        public IAppCommand Create(string input)
+        public IAppCommand GetCommand(string input)
         {
             if (input.Equals(Stop, StringComparison.OrdinalIgnoreCase))
             {

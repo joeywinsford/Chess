@@ -6,18 +6,22 @@ namespace ChessTests
 {
     public class InputtingCommands
     {
-        [Fact]
-        public void AppHandlesUnknownCommandGracefully()
+        private readonly TestOutput _output;
+        private readonly ChessApp _app;
+
+        public InputtingCommands()
         {
-            var output = new TestOutput();
-            var app = new ChessApp(output);
-            var commandName = "Unknown command";
+            _output = new TestOutput();
+            _app = new ChessApp(_output);
+        }
 
-            var unknownCommand = new AppCommandFactory().Create(commandName);
-            Assert.IsType<UnknownAppCommand>(unknownCommand);
+        [Fact]
+        public void AppReportsUnknownCommandsToOutputChannel()
+        {
+            const string commandName = "Unknown command";
 
-            app.ReceiveInput(unknownCommand);
-            Assert.Equal(commandName, output.UnknownCommandErrors.Single());
+            _app.ReceiveInput(commandName);
+            Assert.Equal(commandName, _output.UnknownCommandErrors.Single());
         }
     }
 }

@@ -4,6 +4,8 @@ namespace Chess
 {
     public class ChessApp
     {
+        private readonly AppCommandFactory _commandFactory = new AppCommandFactory();
+
         public ChessApp(IAppOutput output)
         {
             Output = output;
@@ -14,8 +16,10 @@ namespace Chess
         public List<IAppCommand> CommandHistory { get; } = new List<IAppCommand>();
         public bool IsRunning { get; private set; } = true;
 
-        public void ReceiveInput(IAppCommand command)
+        public void ReceiveInput(string input)
         {
+            var command = _commandFactory.GetCommand(input);
+
             CommandHistory.Add(command);
             command.Run(this);
         }
@@ -24,10 +28,5 @@ namespace Chess
         {
             IsRunning = false;
         }
-    }
-
-    public interface IAppOutput
-    {
-        void ReportUnknownCommandError(string unknownCommandName);
     }
 }

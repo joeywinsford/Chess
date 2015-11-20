@@ -8,12 +8,10 @@ namespace ChessCLI
         public static void Main(string[] args)
         {
             var app = new ChessApp(new CommandLineOutput());
-            var interpreter = new AppCommandFactory();
 
             while (app.IsRunning)
             {
-                var command = interpreter.Create(Console.ReadLine());
-                app.ReceiveInput(command);
+                app.ReceiveInput(Console.ReadLine());
             }
         }
     }
