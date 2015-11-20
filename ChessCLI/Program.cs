@@ -11,7 +11,8 @@ namespace ChessCLI
 
             while (session.IsRunning)
             {
-                var input = Console.ReadLine();
+                var input = new Input(Console.ReadLine());
+                session.ReceiveInput(input);
             }
         }
     }
