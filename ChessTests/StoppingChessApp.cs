@@ -5,12 +5,24 @@ namespace ChessTests
 {
     public class StoppingChessApp
     {
-        [Fact]
-        public void AppIsNotRunning()
+        private readonly ChessApp _app;
+        private readonly AppCommandFactory _commandFactory;
+
+        public StoppingChessApp()
         {
-            var app = new ChessApp();
-            app.ReceiveInput(new StopAppCommand());
-            Assert.False(app.IsRunning);
+            _app = new ChessApp();
+            _commandFactory = new AppCommandFactory();
+        }
+
+        [Theory]
+        [InlineData("STOP")]
+        [InlineData("stop")]
+        [InlineData("Stop")]
+        public void CanStopTheApp(string input)
+        {
+            var stopCommand = _commandFactory.Create(input);
+            _app.ReceiveInput(stopCommand);
+            Assert.False(_app.IsRunning);
         }
     }
 }
