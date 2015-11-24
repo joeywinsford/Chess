@@ -1,4 +1,4 @@
-namespace Chess
+namespace Chess.Commands
 {
     public interface IAppCommand
     {

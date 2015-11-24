@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace Chess
 {
     public interface IAppOutput

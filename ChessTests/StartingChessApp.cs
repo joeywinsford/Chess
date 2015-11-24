@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Chess;
+﻿using Chess;
 using Xunit;
 
 namespace ChessTests

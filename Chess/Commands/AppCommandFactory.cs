@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Chess
+namespace Chess.Commands
 {
     public class AppCommandFactory
     {
