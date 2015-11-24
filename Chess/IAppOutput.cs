@@ -5,6 +5,6 @@ namespace Chess
     public interface IAppOutput
     {
         void ReportUnknownCommandError(string unknownCommandName);
-        List<Game> Games { get; }
+        void ReportNewGame(Game newGame);
     }
 }

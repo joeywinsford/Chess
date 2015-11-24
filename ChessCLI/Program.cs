@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Chess;
 
 namespace ChessCLI
@@ -22,5 +23,13 @@ namespace ChessCLI
         {
             Console.WriteLine("Sorry I don't understand '{0}'.", unknownCommandName);
         }
+
+        public void ReportNewGame(Game newGame)
+        {
+            Games.Add(newGame);
+            Console.WriteLine("New game started!");
+        }
+
+        public List<Game> Games { get; } = new List<Game>();
     }
 }

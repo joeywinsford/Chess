@@ -12,5 +12,10 @@ namespace ChessTests
         {
             UnknownCommandErrors.Add(unknownCommandName);
         }
+
+        public void ReportNewGame(Game newGame)
+        {
+            Games.Add(newGame);
+        }
     }
 }

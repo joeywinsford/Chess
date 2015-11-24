@@ -34,8 +34,7 @@ namespace Chess
         {
             var game = new Game();
             game.CreateStandardBoard();
-
-            Output.Games.Add(game);
+            Output.ReportNewGame(game);
         }
     }
 }
