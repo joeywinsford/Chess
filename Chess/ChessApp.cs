@@ -29,12 +29,5 @@ namespace Chess
         {
             IsRunning = false;
         }
-
-        public void CreateGame()
-        {
-            var game = new Game();
-            game.CreateStandardBoard();
-            Output.OnNewGameStarted(game);
-        }
     }
 }

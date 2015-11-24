@@ -24,6 +24,11 @@ namespace ChessCLI
             Console.WriteLine("Sorry I don't understand '{0}'.", unknownCommandName);
         }
 
+        public void OnAppStopping()
+        {
+            Console.WriteLine("TTFN...");
+        }
+
         public void OnNewGameStarted(Game newGame)
         {
             Games.Add(newGame);

@@ -6,10 +6,12 @@ namespace ChessTests
     public class StoppingChessApp
     {
         private readonly ChessApp _app;
+        private readonly TestOutput _output;
 
         public StoppingChessApp()
         {
-            _app = TestAppFactory.Create();
+            _output = new TestOutput();
+            _app = new ChessApp(_output);
         }
 
         [Theory]
@@ -20,6 +22,7 @@ namespace ChessTests
         {
             _app.ReceiveInput(input);
             Assert.False(_app.IsRunning);
+            Assert.Equal(1, _output.NumberOfStopCommands);
         }
     }
 }

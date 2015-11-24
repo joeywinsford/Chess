@@ -4,7 +4,8 @@
     {
         public void Run(ChessApp app)
         {
-            app.Stop(); 
+            app.Stop();
+            app.Output.OnAppStopping();
         }
 
         public string CommandName => "Stop App";

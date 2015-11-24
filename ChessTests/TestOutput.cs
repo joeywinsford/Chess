@@ -7,10 +7,17 @@ namespace ChessTests
     {
         public List<string> UnknownCommandErrors { get; } = new List<string>();
         public List<Game> Games { get; } = new List<Game>();
+        public int NumberOfStopCommands { get; private set; }
+
 
         public void OnUnknownCommandError(string unknownCommandName)
         {
             UnknownCommandErrors.Add(unknownCommandName);
+        }
+
+        public void OnAppStopping()
+        {
+            NumberOfStopCommands++;
         }
 
         public void OnNewGameStarted(Game newGame)

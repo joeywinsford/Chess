@@ -6,7 +6,10 @@ namespace Chess
     {
         public void Run(ChessApp app)
         {
-            app.CreateGame();
+            var game = new Game();
+            game.CreateStandardBoard();
+
+            app.Output.OnNewGameStarted(game);
         }
 
         public string CommandName => "New Game";
