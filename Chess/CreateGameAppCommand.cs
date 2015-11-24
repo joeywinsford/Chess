@@ -8,6 +8,7 @@ namespace Chess
         {
             var game = new Game();
             game.CreateStandardBoard();
+            app.RegisterGame(game);
 
             app.Output.OnNewGameStarted(game);
         }

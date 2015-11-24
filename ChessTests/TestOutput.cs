@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Chess;
 
 namespace ChessTests
@@ -6,7 +7,8 @@ namespace ChessTests
     public class TestOutput : IAppOutput
     {
         public List<string> UnknownCommandErrors { get; } = new List<string>();
-        public List<Game> Games { get; } = new List<Game>();
+
+        public Guid LatestGameId { get; set; }
         public int NumberOfStopCommands { get; private set; }
 
 
@@ -22,7 +24,7 @@ namespace ChessTests
 
         public void OnNewGameStarted(Game newGame)
         {
-            Games.Add(newGame);
+            LatestGameId = newGame.Id;
         }
     }
 }

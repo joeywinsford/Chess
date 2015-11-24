@@ -44,6 +44,9 @@
     <Compile Include="CreateGameAppCommand.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="IAppOutput.cs" />
+    <Compile Include="IPlayer.cs" />
+    <Compile Include="PlayerColour.cs" />
+    <Compile Include="PlayerOpening.cs" />
     <Compile Include="StopAppCommand.cs" />
     <Compile Include="IAppCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

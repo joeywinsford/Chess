@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Chess
 {
     public class ChessApp
     {
         private readonly AppCommandFactory _commandFactory = new AppCommandFactory();
+        private readonly List<Game> _games = new List<Game>();
 
         public ChessApp(IAppOutput output)
         {
@@ -15,6 +17,7 @@ namespace Chess
         public IAppOutput Output { get; set; }
 
         public List<IAppCommand> CommandHistory { get; } = new List<IAppCommand>();
+
         public bool IsRunning { get; private set; } = true;
 
         public void ReceiveInput(string input)
@@ -28,6 +31,16 @@ namespace Chess
         public void Stop()
         {
             IsRunning = false;
+        }
+
+        public Game GetGame(Guid id)
+        {
+            return _games.Single(game => game.Id == id);
+        }
+
+        public void RegisterGame(Game game)
+        {
+            _games.Add(game);
         }
     }
 }
