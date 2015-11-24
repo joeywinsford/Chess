@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Chess
 {
@@ -27,6 +28,14 @@ namespace Chess
         public void Stop()
         {
             IsRunning = false;
+        }
+
+        public void CreateGame()
+        {
+            var game = new Game();
+            game.CreateStandardBoard();
+
+            Output.Games.Add(game);
         }
     }
 }

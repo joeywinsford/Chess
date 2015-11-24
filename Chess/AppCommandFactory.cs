@@ -12,6 +12,10 @@ namespace Chess
             {
                 return new StopAppCommand();
             }
+            if (input.Equals("new game", StringComparison.OrdinalIgnoreCase))
+            {
+                return new CreateGameAppCommand();
+            }
             return new UnknownAppCommand(input);
         }
     }

@@ -40,6 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Board.cs" />
+    <Compile Include="CreateGameAppCommand.cs" />
+    <Compile Include="Game.cs" />
     <Compile Include="IAppOutput.cs" />
     <Compile Include="StopAppCommand.cs" />
     <Compile Include="IAppCommand.cs" />
