@@ -9,7 +9,7 @@
 
         public void Run(ChessApp app)
         {
-            app.Output.ReportUnknownCommandError(CommandName);
+            app.Output.OnUnknownCommandError(CommandName);
         }
 
         public string CommandName { get; }

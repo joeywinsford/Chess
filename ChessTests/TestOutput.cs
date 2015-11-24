@@ -8,12 +8,12 @@ namespace ChessTests
         public List<string> UnknownCommandErrors { get; } = new List<string>();
         public List<Game> Games { get; } = new List<Game>();
 
-        public void ReportUnknownCommandError(string unknownCommandName)
+        public void OnUnknownCommandError(string unknownCommandName)
         {
             UnknownCommandErrors.Add(unknownCommandName);
         }
 
-        public void ReportNewGame(Game newGame)
+        public void OnNewGameStarted(Game newGame)
         {
             Games.Add(newGame);
         }

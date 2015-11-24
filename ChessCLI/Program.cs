@@ -19,12 +19,12 @@ namespace ChessCLI
 
     public class CommandLineOutput : IAppOutput
     {
-        public void ReportUnknownCommandError(string unknownCommandName)
+        public void OnUnknownCommandError(string unknownCommandName)
         {
             Console.WriteLine("Sorry I don't understand '{0}'.", unknownCommandName);
         }
 
-        public void ReportNewGame(Game newGame)
+        public void OnNewGameStarted(Game newGame)
         {
             Games.Add(newGame);
             Console.WriteLine("New game started!");

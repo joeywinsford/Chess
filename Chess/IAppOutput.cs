@@ -4,7 +4,7 @@ namespace Chess
 {
     public interface IAppOutput
     {
-        void ReportUnknownCommandError(string unknownCommandName);
-        void ReportNewGame(Game newGame);
+        void OnUnknownCommandError(string unknownCommandName);
+        void OnNewGameStarted(Game newGame);
     }
 }
