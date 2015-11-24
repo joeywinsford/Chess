@@ -8,6 +8,7 @@ namespace ChessTests
     {
         private readonly Game _newGame;
         private readonly ChessApp _app;
+        private readonly string _latestGameName;
 
         public StartingANewGame()
         {
@@ -15,7 +16,8 @@ namespace ChessTests
             _app = new ChessApp(output);
 
             _app.ReceiveInput("new game");
-            _newGame = _app.GetGame(output.LatestGameName);
+            _latestGameName = output.LatestGameName;
+            _newGame = _app.GetGame(_latestGameName);
         }
 
         [Fact]
@@ -29,20 +31,24 @@ namespace ChessTests
         [Fact]
         public void NewGameHasTwoOpeningsForPlayers()
         {
-            var player1 = _newGame.GetPlayer(PlayerColour.Black);
-            Assert.IsType<PlayerOpening>(player1);
+            var blackPlayer = _newGame.GetPlayer(PlayerColour.Black);
+            Assert.IsType<PlayerOpening>(blackPlayer);
 
-            var player2 = _newGame.GetPlayer(PlayerColour.White);
-            Assert.IsType<PlayerOpening>(player2);
+            var whitePlayer = _newGame.GetPlayer(PlayerColour.White);
+            Assert.IsType<PlayerOpening>(whitePlayer);
         }
 
         [Fact]
-        public void PlayerCanJoinAnOpeningInANewGameAsBlack()
+        public void TwoPlayersCanJoinAnOpeningInANewGame()
         {
-            _app.ReceiveInput("join game game1 as black");
+            _app.ReceiveInput($"join game {_latestGameName} as black");
+            _app.ReceiveInput($"join game {_latestGameName} as white");
 
-            var player1 = _newGame.GetPlayer(PlayerColour.Black);
-            Assert.IsType<PlayerBlack>(player1);
+            var blackPlayer = _newGame.GetPlayer(PlayerColour.Black);
+            Assert.IsType<PlayerBlack>(blackPlayer);
+
+            var whitePlayer = _newGame.GetPlayer(PlayerColour.White);
+            Assert.IsType<PlayerWhite>(whitePlayer);
         }
     }
 }

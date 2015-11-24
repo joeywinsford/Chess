@@ -51,6 +51,7 @@
     <Compile Include="Commands\StopAppCommand.cs" />
     <Compile Include="Commands\IAppCommand.cs" />
     <Compile Include="PlayerBlack.cs" />
+    <Compile Include="PlayerWhite.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ChessApp.cs" />
     <Compile Include="Commands\AppCommandFactory.cs" />

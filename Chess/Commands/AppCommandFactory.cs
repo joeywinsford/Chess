@@ -18,7 +18,14 @@ namespace Chess.Commands
             }
             if (input.StartsWith("join game "))
             {
-                return new JoinGameAppCommand("game1", PlayerColour.Black);
+                if (input.EndsWith("black"))
+                {
+                    return new JoinGameAppCommand("game1", PlayerColour.Black);
+                }
+                if (input.EndsWith("white"))
+                {
+                    return new JoinGameAppCommand("game1", PlayerColour.White);
+                }
             }
             return new UnknownAppCommand(input);
         }

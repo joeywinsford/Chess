@@ -16,10 +16,20 @@ namespace Chess.Commands
         public void Run(ChessApp app)
         {
             var game = app.GetGame(_gameName);
-            var player = new PlayerBlack();
-            game.Join(player);
+
+            var player = CreatePlayer(_playerColour);
+            game.Join(_playerColour, player);
 
             app.Output.OnPlayerJoiningGame(player, game);
+        }
+
+        private static IPlayer CreatePlayer(PlayerColour playerColour)
+        {
+            if (playerColour == PlayerColour.Black)
+            {
+                return new PlayerBlack();
+            }
+            return new PlayerWhite();
         }
 
         public string CommandName => "Join Game";

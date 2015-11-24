@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Chess
 {
     public class Game
     {
-        private IPlayer _player;
+        private Dictionary<PlayerColour, IPlayer> _players = new Dictionary<PlayerColour, IPlayer>();
 
         public Game(string name)
         {
@@ -22,16 +23,16 @@ namespace Chess
 
         public IPlayer GetPlayer(PlayerColour playerColour)
         {
-            if (_player == null)
+            if (!_players.ContainsKey(playerColour))
             {
                 return new PlayerOpening();
             }
-            return _player;
+            return _players[playerColour];
         }
 
-        public void Join(IPlayer player)
+        public void Join(PlayerColour playerColour, IPlayer player)
         {
-            _player = player;
+            _players.Add(playerColour, player);
         }
     }
 }
