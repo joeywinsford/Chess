@@ -8,7 +8,7 @@ namespace ChessTests
     {
         public List<string> UnknownCommandErrors { get; } = new List<string>();
 
-        public Guid LatestGameId { get; set; }
+        public string LatestGameName { get; set; }
         public int NumberOfStopCommands { get; private set; }
 
 
@@ -24,7 +24,12 @@ namespace ChessTests
 
         public void OnNewGameStarted(Game newGame)
         {
-            LatestGameId = newGame.Id;
+            LatestGameName = newGame.Name;
+        }
+
+        public void OnPlayerJoiningGame(IPlayer player, Game game)
+        {
+            
         }
     }
 }

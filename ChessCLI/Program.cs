@@ -32,7 +32,12 @@ namespace ChessCLI
         public void OnNewGameStarted(Game newGame)
         {
             Games.Add(newGame);
-            Console.WriteLine("New game started!");
+            Console.WriteLine("New game: {0}", newGame.Name);
+        }
+
+        public void OnPlayerJoiningGame(IPlayer player, Game game)
+        {
+            Console.WriteLine("Player {0} joined {1}.", player.GetType(), game.Name);
         }
 
         public List<Game> Games { get; } = new List<Game>();

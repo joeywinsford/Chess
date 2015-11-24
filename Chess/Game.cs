@@ -4,8 +4,16 @@ namespace Chess
 {
     public class Game
     {
+        private IPlayer _player;
+
+        public Game(string name)
+        {
+            Name = name;
+        }
+
+        public string Name { get; private set; }
+
         public Board Board { get; private set; }
-        public Guid Id { get; private set; } = Guid.NewGuid();
 
         public void CreateStandardBoard()
         {
@@ -14,7 +22,16 @@ namespace Chess
 
         public IPlayer GetPlayer(PlayerColour playerColour)
         {
-            return new PlayerOpening();
+            if (_player == null)
+            {
+                return new PlayerOpening();
+            }
+            return _player;
+        }
+
+        public void Join(IPlayer player)
+        {
+            _player = player;
         }
     }
 }

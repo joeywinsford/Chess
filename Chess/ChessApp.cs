@@ -34,9 +34,9 @@ namespace Chess
             IsRunning = false;
         }
 
-        public Game GetGame(Guid id)
+        public Game GetGame(string id)
         {
-            return _games.Single(game => game.Id == id);
+            return _games.Single(game => game.Name == id);
         }
 
         public void RegisterGame(Game game)
