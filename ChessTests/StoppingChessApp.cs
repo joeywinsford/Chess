@@ -1,4 +1,5 @@
 ﻿using Chess;
+using Chess.Commands;
 using Xunit;
 
 namespace ChessTests
@@ -14,13 +15,10 @@ namespace ChessTests
             _app = new ChessApp(_output);
         }
 
-        [Theory]
-        [InlineData("STOP")]
-        [InlineData("stop")]
-        [InlineData("Stop")]
-        public void CanStopTheApp(string input)
+        [Fact]
+        public void CanStopTheApp()
         {
-            _app.ReceiveInput(input);
+            _app.ReceiveInput(new StopAppCommand());
             Assert.False(_app.IsRunning);
             Assert.Equal(1, _output.NumberOfStopCommands);
         }

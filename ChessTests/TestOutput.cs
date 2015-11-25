@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Chess;
 
 namespace ChessTests
@@ -10,12 +9,8 @@ namespace ChessTests
 
         public string LatestGameName { get; set; }
         public int NumberOfStopCommands { get; private set; }
+        public int NumberOfColourTakenCannotJoinGameErrors { get; private set; }
 
-
-        public void OnUnknownCommandError(string unknownCommandName)
-        {
-            UnknownCommandErrors.Add(unknownCommandName);
-        }
 
         public void OnAppStopping()
         {
@@ -30,6 +25,11 @@ namespace ChessTests
         public void OnPlayerJoiningGame(IPlayer player, Game game)
         {
             
+        }
+
+        public void OnColourTakenCannotJoinGameError(PlayerColour playerColour, Game game)
+        {
+            NumberOfColourTakenCannotJoinGameErrors++;
         }
     }
 }

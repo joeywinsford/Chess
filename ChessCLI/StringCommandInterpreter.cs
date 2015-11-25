@@ -1,8 +1,10 @@
 ﻿using System;
+using Chess;
+using Chess.Commands;
 
-namespace Chess.Commands
+namespace ChessCLI
 {
-    public class AppCommandFactory
+    public class StringCommandInterpreter
     {
         private const string Stop = "stop";
 
@@ -20,14 +22,14 @@ namespace Chess.Commands
             {
                 if (input.EndsWith("black"))
                 {
-                    return new JoinGameAppCommand("game1", PlayerColour.Black);
+                    return new JoinGameAppCommand("game1", "blackplayer",  PlayerColour.Black);
                 }
                 if (input.EndsWith("white"))
                 {
-                    return new JoinGameAppCommand("game1", PlayerColour.White);
+                    return new JoinGameAppCommand("game1", "whiteplayer", PlayerColour.White);
                 }
             }
-            return new UnknownAppCommand(input);
+            return null;
         }
     }
 }

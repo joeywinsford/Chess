@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="InputtingCommands.cs" />
+    <Compile Include="JoiningAGameFullOfPlayers.cs" />
     <Compile Include="StartingANewGame.cs" />
     <Compile Include="StoppingChessApp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,15 +1,15 @@
-﻿using System;
-
-namespace Chess.Commands
+﻿namespace Chess.Commands
 {
     public class JoinGameAppCommand : IAppCommand
     {
         private readonly string _gameName;
+        private readonly string _playerName;
         private readonly PlayerColour _playerColour;
 
-        public JoinGameAppCommand(string gameName, PlayerColour playerColour)
+        public JoinGameAppCommand(string gameName, string playerName, PlayerColour playerColour)
         {
             _gameName = gameName;
+            _playerName = playerName;
             _playerColour = playerColour;
         }
 
@@ -17,21 +17,38 @@ namespace Chess.Commands
         {
             var game = app.GetGame(_gameName);
 
-            var player = CreatePlayer(_playerColour);
-            game.Join(_playerColour, player);
+            var player = CreatePlayer(_playerName, _playerColour);
+            var result = game.Join(_playerColour, player);
 
-            app.Output.OnPlayerJoiningGame(player, game);
+            if (!result.WasSuccess)
+            {
+                app.Output.OnColourTakenCannotJoinGameError(_playerColour, game);
+            }
+            else
+            {
+                app.Output.OnPlayerJoiningGame(player, game);
+            }
         }
 
-        private static IPlayer CreatePlayer(PlayerColour playerColour)
+        private static IPlayer CreatePlayer(string playerName, PlayerColour playerColour)
         {
             if (playerColour == PlayerColour.Black)
             {
-                return new PlayerBlack();
+                return new PlayerBlack(playerName) ;
             }
-            return new PlayerWhite();
+            return new PlayerWhite(playerName);
         }
 
         public string CommandName => "Join Game";
+    }
+
+    public class JoinGameResult
+    {
+        public JoinGameResult(bool wasSuccess)
+        {
+            WasSuccess = wasSuccess;
+        }
+
+        public bool WasSuccess { get; }
     }
 }

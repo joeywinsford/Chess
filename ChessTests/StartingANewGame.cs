@@ -1,5 +1,5 @@
-﻿using System;
-using Chess;
+﻿using Chess;
+using Chess.Commands;
 using Xunit;
 
 namespace ChessTests
@@ -15,7 +15,7 @@ namespace ChessTests
             var output = new TestOutput();
             _app = new ChessApp(output);
 
-            _app.ReceiveInput("new game");
+            _app.ReceiveInput(new CreateGameAppCommand());
             _latestGameName = output.LatestGameName;
             _newGame = _app.GetGame(_latestGameName);
         }
@@ -41,8 +41,8 @@ namespace ChessTests
         [Fact]
         public void TwoPlayersCanJoinAnOpeningInANewGame()
         {
-            _app.ReceiveInput($"join game {_latestGameName} as black");
-            _app.ReceiveInput($"join game {_latestGameName} as white");
+            _app.ReceiveInput(new JoinGameAppCommand(_latestGameName, "denise", PlayerColour.Black));
+            _app.ReceiveInput(new JoinGameAppCommand(_latestGameName, "derek", PlayerColour.White));
 
             var blackPlayer = _newGame.GetPlayer(PlayerColour.Black);
             Assert.IsType<PlayerBlack>(blackPlayer);

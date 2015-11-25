@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Chess.Commands;
 
 namespace Chess
 {
     public class Game
     {
-        private Dictionary<PlayerColour, IPlayer> _players = new Dictionary<PlayerColour, IPlayer>();
+        private readonly Dictionary<PlayerColour, IPlayer> _players = new Dictionary<PlayerColour, IPlayer>();
 
         public Game(string name)
         {
@@ -30,9 +30,17 @@ namespace Chess
             return _players[playerColour];
         }
 
-        public void Join(PlayerColour playerColour, IPlayer player)
+        public JoinGameResult Join(PlayerColour playerColour, IPlayer player)
         {
+            if (_players.ContainsKey(playerColour))
+            {
+                return new JoinGameResult(wasSuccess:false);
+            }
+
             _players.Add(playerColour, player);
+            return new JoinGameResult(wasSuccess:true);
         }
     }
+
+    
 }

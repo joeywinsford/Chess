@@ -54,8 +54,6 @@
     <Compile Include="PlayerWhite.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ChessApp.cs" />
-    <Compile Include="Commands\AppCommandFactory.cs" />
-    <Compile Include="Commands\UnknownAppCommand.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

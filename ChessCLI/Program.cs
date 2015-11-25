@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Chess;
 
 namespace ChessCLI
@@ -9,37 +8,21 @@ namespace ChessCLI
         public static void Main(string[] args)
         {
             var app = new ChessApp(new CommandLineOutput());
+            var interpreter = new StringCommandInterpreter();
 
             while (app.IsRunning)
             {
-                app.ReceiveInput(Console.ReadLine());
+                var input = Console.ReadLine();
+                var command = interpreter.GetCommand(input);
+                if (command != null)
+                {
+                    app.ReceiveInput(command);
+                }
+                else
+                {
+                    Console.WriteLine("Unknown command '{0}'.", input);
+                }
             }
         }
-    }
-
-    public class CommandLineOutput : IAppOutput
-    {
-        public void OnUnknownCommandError(string unknownCommandName)
-        {
-            Console.WriteLine("Sorry I don't understand '{0}'.", unknownCommandName);
-        }
-
-        public void OnAppStopping()
-        {
-            Console.WriteLine("TTFN...");
-        }
-
-        public void OnNewGameStarted(Game newGame)
-        {
-            Games.Add(newGame);
-            Console.WriteLine("New game: {0}", newGame.Name);
-        }
-
-        public void OnPlayerJoiningGame(IPlayer player, Game game)
-        {
-            Console.WriteLine("Player {0} joined {1}.", player.GetType(), game.Name);
-        }
-
-        public List<Game> Games { get; } = new List<Game>();
     }
 }

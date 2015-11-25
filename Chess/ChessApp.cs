@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Chess.Commands;
 
@@ -7,7 +6,6 @@ namespace Chess
 {
     public class ChessApp
     {
-        private readonly AppCommandFactory _commandFactory = new AppCommandFactory();
         private readonly List<Game> _games = new List<Game>();
 
         public ChessApp(IAppOutput output)
@@ -21,10 +19,8 @@ namespace Chess
 
         public bool IsRunning { get; private set; } = true;
 
-        public void ReceiveInput(string input)
+        public void ReceiveInput(IAppCommand command)
         {
-            var command = _commandFactory.GetCommand(input);
-
             CommandHistory.Add(command);
             command.Run(this);
         }
