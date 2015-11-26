@@ -52,29 +52,5 @@ namespace ChessTests
             var whitePlayer = _newGame.GetPlayer(PlayerColour.White);
             Assert.IsType<PlayerWhite>(whitePlayer);
         }
-
-        [Theory]
-        [InlineData("A", "8", typeof(Rook))]
-        [InlineData("A", "7", typeof(Knight))]
-        [InlineData("A", "6", typeof(Bishop))]
-        [InlineData("A", "5", typeof(Queen))]
-        [InlineData("A", "4", typeof(King))]
-        [InlineData("A", "3", typeof(Bishop))]
-        [InlineData("A", "2", typeof(Knight))]
-        [InlineData("A", "1", typeof(Rook))]
-        [InlineData("B", "8", typeof(Pawn))]
-        [InlineData("B", "7", typeof(Pawn))]
-        [InlineData("B", "6", typeof(Pawn))]
-        [InlineData("B", "5", typeof(Pawn))]
-        [InlineData("B", "4", typeof(Pawn))]
-        [InlineData("B", "3", typeof(Pawn))]
-        [InlineData("B", "2", typeof(Pawn))]
-        [InlineData("B", "1", typeof(Pawn))]
-        public void BoardHasStandardBlackPiecesOnFileAAndB(string file, string rank, Type pieceType)
-        {
-            var piece = _newGame.Board.GetPieceAtLocation(file, rank);
-            Assert.NotNull(piece);
-            Assert.IsType(pieceType, piece);
-        }
     }
 }
