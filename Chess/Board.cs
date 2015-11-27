@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Common;
-
-namespace Chess
+﻿namespace Chess
 {
     public class Board
     {
-        
-
         public Board(int height, int width)
         {
             Height = height;
@@ -17,29 +11,38 @@ namespace Chess
         public int Width { get; private set; }
         public int Height { get; private set; }
 
-        public IPiece GetPieceAtLocation(string file, string rank)
+        public IPiece GetPieceAtLocation(string rank, string file)
         {
-            if (file == "B")
+            var colour = PlayerColour.Black;
+            if (file == "1" || file == "2")
             {
-                return new Pawn();
+                colour = PlayerColour.White;
             }
-            if (rank == "7" || rank == "2")
+
+            IPiece piece = new Rook(colour);
+            if (file == "7" || file == "2")
             {
-                return new Knight();
+                piece = new Pawn(colour);
             }
-            if (rank == "6" || rank == "3")
+            else if (rank == "B" || rank == "G")
             {
-                return new Bishop();
+                piece = new Knight(colour);
             }
-            if (rank == "5")
+            else if (rank == "C" || rank == "F")
             {
-                return new Queen();
+                piece = new Bishop(colour);
             }
-            if (rank == "4")
+            else if (rank == "D")
             {
-                return new King();
+                piece = new Queen(colour);
             }
-            return new Rook();
+            else if (rank == "E")
+            {
+                piece = new King(colour);
+            }
+
+            
+            return piece;
         }
     }
 }

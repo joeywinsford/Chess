@@ -22,37 +22,51 @@ namespace ChessTests
             _newGame = app.GetGame(output.LatestGameName);
         }
 
+
         [Theory]
-        [InlineData("A", "8", typeof(Rook))]
-        [InlineData("A", "7", typeof(Knight))]
-        [InlineData("A", "6", typeof(Bishop))]
-        [InlineData("A", "5", typeof(Queen))]
-        [InlineData("A", "4", typeof(King))]
-        [InlineData("A", "3", typeof(Bishop))]
-        [InlineData("A", "2", typeof(Knight))]
-        [InlineData("A", "1", typeof(Rook))]
-        public void BoardHasSpecialBlackPiecesOnFileA(string file, string rank, Type pieceType)
+        [MemberData("GetStandardBoardLayout")]
+        public void BoardHasStandardDeploymentOfPieces(string file, string rank, Type pieceType, PlayerColour pieceColour)
         {
             var piece = _newGame.Board.GetPieceAtLocation(file, rank);
             Assert.NotNull(piece);
             Assert.IsType(pieceType, piece);
-            Assert.Equal(PlayerColour.Black, piece.Colour);
+            Assert.Equal(pieceColour, piece.Colour);
         }
 
-        [Theory]
-        [InlineData("8")]
-        [InlineData("7")]
-        [InlineData("6")]
-        [InlineData("5")]
-        [InlineData("4")]
-        [InlineData("3")]
-        [InlineData("2")]
-        [InlineData("1")]
-        public void BoardHasBlackPawnsOnFileB(string rank)
+        public static IEnumerable<object[]> GetStandardBoardLayout()
         {
-            var piece = _newGame.Board.GetPieceAtLocation("B", rank);
-            Assert.IsType<Pawn>(piece);
-            Assert.Equal(PlayerColour.Black, piece.Colour);
+            yield return new object[] { "A", "8", typeof(Rook), PlayerColour.Black };
+            yield return new object[] { "B", "8", typeof(Knight), PlayerColour.Black };
+            yield return new object[] { "C", "8", typeof(Bishop), PlayerColour.Black };
+            yield return new object[] { "D", "8", typeof(Queen), PlayerColour.Black };
+            yield return new object[] { "E", "8", typeof(King), PlayerColour.Black };
+            yield return new object[] { "F", "8", typeof(Bishop), PlayerColour.Black };
+            yield return new object[] { "G", "8", typeof(Knight), PlayerColour.Black };
+            yield return new object[] { "H", "8", typeof(Rook), PlayerColour.Black };
+            yield return new object[] { "A", "7", typeof(Pawn), PlayerColour.Black };
+            yield return new object[] { "B", "7", typeof(Pawn), PlayerColour.Black };
+            yield return new object[] { "C", "7", typeof(Pawn), PlayerColour.Black };
+            yield return new object[] { "D", "7", typeof(Pawn), PlayerColour.Black };
+            yield return new object[] { "E", "7", typeof(Pawn), PlayerColour.Black };
+            yield return new object[] { "F", "7", typeof(Pawn), PlayerColour.Black };
+            yield return new object[] { "G", "7", typeof(Pawn), PlayerColour.Black };
+            yield return new object[] { "H", "7", typeof(Pawn), PlayerColour.Black };
+            yield return new object[] { "A", "2", typeof(Pawn), PlayerColour.White };
+            yield return new object[] { "B", "2", typeof(Pawn), PlayerColour.White };
+            yield return new object[] { "C", "2", typeof(Pawn), PlayerColour.White };
+            yield return new object[] { "D", "2", typeof(Pawn), PlayerColour.White };
+            yield return new object[] { "E", "2", typeof(Pawn), PlayerColour.White };
+            yield return new object[] { "F", "2", typeof(Pawn), PlayerColour.White };
+            yield return new object[] { "G", "2", typeof(Pawn), PlayerColour.White };
+            yield return new object[] { "H", "2", typeof(Pawn), PlayerColour.White };
+            yield return new object[] { "A", "1", typeof(Rook), PlayerColour.White };
+            yield return new object[] { "B", "1", typeof(Knight), PlayerColour.White };
+            yield return new object[] { "C", "1", typeof(Bishop), PlayerColour.White };
+            yield return new object[] { "D", "1", typeof(Queen), PlayerColour.White };
+            yield return new object[] { "E", "1", typeof(King), PlayerColour.White };
+            yield return new object[] { "F", "1", typeof(Bishop), PlayerColour.White };
+            yield return new object[] { "G", "1", typeof(Knight), PlayerColour.White };
+            yield return new object[] { "H", "1", typeof(Rook), PlayerColour.White };
         }
     }
 }
