@@ -24,7 +24,7 @@ namespace ChessTests
 
 
         [Theory]
-        [MemberData("GetStandardBoardLayout")]
+        [MemberData("GetStandardPieceLayout")]
         public void BoardHasStandardDeploymentOfPieces(string file, string rank, Type pieceType, PlayerColour pieceColour)
         {
             var piece = _newGame.Board.GetPieceAtLocation(file, rank);
@@ -33,7 +33,15 @@ namespace ChessTests
             Assert.Equal(pieceColour, piece.Colour);
         }
 
-        public static IEnumerable<object[]> GetStandardBoardLayout()
+        [Theory]
+        [MemberData("GetEmptyLocations")]
+        public void MiddleOfBoardIsEmpty(string file, string rank)  
+        {
+            var piece = _newGame.Board.GetPieceAtLocation(file, rank);
+            Assert.Null(piece);
+        }
+
+        public static IEnumerable<object[]> GetStandardPieceLayout()
         {
             yield return new object[] { "A", "8", typeof(Rook), PlayerColour.Black };
             yield return new object[] { "B", "8", typeof(Knight), PlayerColour.Black };
@@ -67,6 +75,19 @@ namespace ChessTests
             yield return new object[] { "F", "1", typeof(Bishop), PlayerColour.White };
             yield return new object[] { "G", "1", typeof(Knight), PlayerColour.White };
             yield return new object[] { "H", "1", typeof(Rook), PlayerColour.White };
+        }
+
+        public static IEnumerable<object[]> GetEmptyLocations()
+        {
+            var emptyRanks = new[] {"3", "4", "5", "6"};
+            var files = new[] {"A", "B", "C", "D", "E", "F", "G", "H"};
+            foreach (var rank in emptyRanks)
+            {
+                foreach (var file in files)
+                {
+                    yield return new object[] { file, rank };
+                }
+            }
         }
     }
 }
