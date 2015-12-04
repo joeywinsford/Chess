@@ -10,7 +10,7 @@ namespace Chess
 
         public Dictionary<PlayerColour, IPlayer> Players { get; } = new Dictionary<PlayerColour, IPlayer>();
 
-        public string Id { get; } = Guid.NewGuid().ToString();
+        public string Id { get; set; } = Guid.NewGuid().ToString();
 
         public IBoard GetBoard()
         {

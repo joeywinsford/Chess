@@ -1,4 +1,5 @@
-﻿using Chess.Commands;
+﻿using System;
+using Chess.Commands;
 using Nancy;
 
 namespace Chess.API
@@ -7,13 +8,40 @@ namespace Chess.API
     {
         public GameModule() : base("game")
         {
-            Post["new"] = parameters =>
+            var output = new AppOutput();
+            var app = new ChessApp(output);
+
+            Post["new"] = _ =>
             {
-                var output = new AppOutput();
-                var app = new ChessApp(output);
                 app.ReceiveInput(new CreateGameAppCommand());
                 return Response.AsJson(output.NewGame);
             };
+
+            Post["join/{id}/iam/{playerName}/playing/{colour}"] = parameters =>
+            {
+                string gameId = parameters.id;
+                string playerName = parameters.playerName;
+                var colour = GetColour(parameters.colour);
+                if (colour == null)
+                {
+                    return HttpStatusCode.BadRequest;
+                }
+                app.ReceiveInput(new JoinGameAppCommand(gameId, playerName, colour));
+                return $"{playerName} joined game {gameId} as {colour}";
+            };
+        }
+
+        private static PlayerColour? GetColour(string colour)
+        {
+            if (colour.Equals("black", StringComparison.OrdinalIgnoreCase))
+            {
+                return PlayerColour.Black;
+            }
+            if (colour.Equals("white", StringComparison.OrdinalIgnoreCase))
+            {
+                return PlayerColour.White;
+            }
+            return null;
         }
     }
 
@@ -21,7 +49,7 @@ namespace Chess.API
     {
         public void OnAppStopping()
         {
-            
+
         }
 
         public void OnNewGameStarted(Game newGame)
@@ -33,12 +61,12 @@ namespace Chess.API
 
         public void OnPlayerJoiningGame(IPlayer player, Game game)
         {
-            
+
         }
 
         public void OnColourTakenCannotJoinGameError(PlayerColour playerColour, Game game)
         {
-            
+
         }
     }
 }

@@ -6,7 +6,7 @@ namespace Chess
 {
     public class ChessApp
     {
-        private readonly List<Game> _games = new List<Game>();
+        private static readonly List<Game> Games = new List<Game>();
 
         public ChessApp(IAppOutput output)
         {
@@ -32,12 +32,12 @@ namespace Chess
 
         public Game GetGame(string id)
         {
-            return _games.Single(game => game.Id == id);
+            return Games.Single(game => game.Id == id);
         }
 
         public void RegisterGame(Game game)
         {
-            _games.Add(game);
+            Games.Add(game);
         }
     }
 }
