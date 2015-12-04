@@ -19,7 +19,7 @@ namespace ChessTests
 
         public void OnNewGameStarted(Game newGame)
         {
-            LatestGameName = newGame.Name;
+            LatestGameName = newGame.Id;
         }
 
         public void OnPlayerJoiningGame(IPlayer player, Game game)

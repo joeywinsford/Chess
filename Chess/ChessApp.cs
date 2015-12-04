@@ -32,7 +32,7 @@ namespace Chess
 
         public Game GetGame(string id)
         {
-            return _games.Single(game => game.Name == id);
+            return _games.Single(game => game.Id == id);
         }
 
         public void RegisterGame(Game game)

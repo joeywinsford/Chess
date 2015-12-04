@@ -6,10 +6,11 @@ namespace Chess
 {
     public class Game
     {
-        private readonly Dictionary<PlayerColour, IPlayer> _players = new Dictionary<PlayerColour, IPlayer>();
         private IBoard _board;
 
-        public string Name { get; } = Guid.NewGuid().ToString();
+        public Dictionary<PlayerColour, IPlayer> Players { get; } = new Dictionary<PlayerColour, IPlayer>();
+
+        public string Id { get; } = Guid.NewGuid().ToString();
 
         public IBoard GetBoard()
         {
@@ -18,21 +19,21 @@ namespace Chess
 
         public IPlayer GetPlayer(PlayerColour playerColour)
         {
-            if (!_players.ContainsKey(playerColour))
+            if (!Players.ContainsKey(playerColour))
             {
                 return new PlayerOpening();
             }
-            return _players[playerColour];
+            return Players[playerColour];
         }
 
         public JoinGameResult Join(PlayerColour playerColour, IPlayer player)
         {
-            if (_players.ContainsKey(playerColour))
+            if (Players.ContainsKey(playerColour))
             {
                 return new JoinGameResult(wasSuccess:false);
             }
 
-            _players.Add(playerColour, player);
+            Players.Add(playerColour, player);
             return new JoinGameResult(wasSuccess:true);
         }
 

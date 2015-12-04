@@ -20,14 +20,19 @@ namespace Chess.API.Tests
         [Fact]  
         public void NewGameHasAUniqueName()
         {
-            
             Assert.Equal(HttpStatusCode.OK, _response.StatusCode);
 
             var secondResponse = _browser.Post("game/new");
             Assert.Equal(HttpStatusCode.OK, secondResponse.StatusCode);
 
             var secondGame = secondResponse.Body.DeserializeJson<Game>();
-            Assert.NotEqual(_newGame.Name, secondGame.Name);
+            Assert.NotEqual(_newGame.Id, secondGame.Id);
+        }
+            
+        [Fact]
+        public void NewGameHasNoPlayers()
+        {
+            Assert.Equal(0, _newGame.Players.Count);
         }
     }
 }

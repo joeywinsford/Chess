@@ -14,12 +14,12 @@ namespace ChessCLI
         public void OnNewGameStarted(Game newGame)
         {
             Games.Add(newGame);
-            Console.WriteLine("New game: {0}", newGame.Name);
+            Console.WriteLine("New game: {0}", newGame.Id);
         }
 
         public void OnPlayerJoiningGame(IPlayer player, Game game)
         {
-            Console.WriteLine("Player {0} joined {1}.", player.Name, game.Name);
+            Console.WriteLine("Player {0} joined {1}.", player.Name, game.Id);
         }
 
         public void OnColourTakenCannotJoinGameError(PlayerColour playerColour, Game game)
