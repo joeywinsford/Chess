@@ -9,7 +9,7 @@ namespace Chess.API
     {
         public HeartbeatModule()
         {
-            Get["/"] = parameters => $"The time on the server is {DateTime.Now.ToString("R")}";
+            Get["/"] = parameters => "Hi Mum";
         }
     }
 }
