@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Chess.Commands;
 
 namespace Chess
@@ -6,16 +7,14 @@ namespace Chess
     public class Game
     {
         private readonly Dictionary<PlayerColour, IPlayer> _players = new Dictionary<PlayerColour, IPlayer>();
+        private IBoard _board;
 
-        public Game(string name, IBoard board)
+        public string Name { get; } = Guid.NewGuid().ToString();
+
+        public IBoard GetBoard()
         {
-            Name = name;
-            Board = board;
+            return _board;
         }
-
-        public string Name { get; private set; }
-
-        public IBoard Board { get; private set; }
 
         public IPlayer GetPlayer(PlayerColour playerColour)
         {
@@ -35,6 +34,11 @@ namespace Chess
 
             _players.Add(playerColour, player);
             return new JoinGameResult(wasSuccess:true);
+        }
+
+        public void AddBoard(IBoard board)
+        {
+            _board = board;
         }
     }
 

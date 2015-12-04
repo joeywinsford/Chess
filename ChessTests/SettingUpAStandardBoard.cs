@@ -24,7 +24,7 @@ namespace ChessTests
         [MemberData("GetStandardPieceLayout")]
         public void BoardHasStandardDeploymentOfPieces(File file, Rank rank, Type pieceType, PlayerColour pieceColour)
         {
-            var piece = _newGame.Board.GetPieceAtLocation(rank, file);
+            var piece = _newGame.GetBoard().GetPieceAtLocation(rank, file);
             Assert.NotNull(piece);
             Assert.IsType(pieceType, piece);
             Assert.Equal(pieceColour, piece.Colour);
@@ -34,7 +34,7 @@ namespace ChessTests
         [MemberData("GetEmptyLocations")]
         public void MiddleOfBoardIsEmpty(File file, Rank rank)
         {
-            var piece = _newGame.Board.GetPieceAtLocation(rank, file);
+            var piece = _newGame.GetBoard().GetPieceAtLocation(rank, file);
             Assert.Null(piece);
         }
 
