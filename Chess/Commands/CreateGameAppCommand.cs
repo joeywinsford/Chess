@@ -4,10 +4,8 @@ namespace Chess.Commands
     {
         public void Run(ChessApp app)
         {
-            var game = new Game("game1");
-            game.CreateStandardBoard();
+            var game = new Game("game1", new StandardBoard());
             app.RegisterGame(game);
-
             app.Output.OnNewGameStarted(game);
         }
 

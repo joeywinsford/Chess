@@ -7,19 +7,15 @@ namespace Chess
     {
         private readonly Dictionary<PlayerColour, IPlayer> _players = new Dictionary<PlayerColour, IPlayer>();
 
-        public Game(string name)
+        public Game(string name, IBoard board)
         {
             Name = name;
+            Board = board;
         }
 
         public string Name { get; private set; }
 
-        public Board Board { get; private set; }
-
-        public void CreateStandardBoard()
-        {
-            Board = new Board(8, 8);
-        }
+        public IBoard Board { get; private set; }
 
         public IPlayer GetPlayer(PlayerColour playerColour)
         {

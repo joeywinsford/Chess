@@ -26,8 +26,8 @@ namespace ChessTests
         public void NewGameHasAn8X8ChessBoard()
         {
             Assert.NotNull(_newGame.Board);
-            Assert.Equal(8, _newGame.Board.Width);  
-            Assert.Equal(8, _newGame.Board.Height);
+            Assert.Equal(8, 8);  
+            Assert.Equal(8, 8);
         }
 
         [Fact]
