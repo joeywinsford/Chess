@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace Chess
 {
@@ -10,7 +11,7 @@ namespace Chess
 
     public class StandardBoard : IBoard
     {
-        private readonly Dictionary<Location, IPiece> _board = new Dictionary<Location, IPiece>();
+        private readonly List<IBoardEvent> _events = new List<IBoardEvent>();
 
         public StandardBoard()
         {
@@ -34,12 +35,13 @@ namespace Chess
 
         private void SpawnPiece(Rank rank, File file, IPiece piece)
         {
-            _board[new Location(rank, file)] = piece;
+            _events.Add(new SpawnPiece(piece, new Location(rank, file)));
         }
 
         public IPiece GetPieceAtLocation(Rank rank, File file)
         {
-            return _board[new Location(rank, file)];
+            var maybePiece = _events.OfType<SpawnPiece>().LastOrDefault(e => e.Location.Rank == rank && e.Location.File == file);
+            return maybePiece?.Piece;
         }
 
         private static IPiece InitialPieceAtLocation(Rank rank, File file)
@@ -79,6 +81,24 @@ namespace Chess
             }
             
             return piece;
+        }
+    }
+
+    public interface IBoardEvent
+    {
+        IPiece Piece { get; set; }
+        Location Location { get; set; }
+    }
+
+    public class SpawnPiece : IBoardEvent
+    {
+        public IPiece Piece { get; set; }
+        public Location Location { get; set; }
+
+        public SpawnPiece(IPiece piece, Location location)
+        {
+            Piece = piece;
+            Location = location;
         }
     }
 }
