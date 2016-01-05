@@ -40,8 +40,6 @@ namespace Chess.Commands
             }
             return new PlayerWhite(playerName);
         }
-
-        public string CommandName => "Join Game";
     }
 
     public class JoinGameResult

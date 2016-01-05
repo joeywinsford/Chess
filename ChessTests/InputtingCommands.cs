@@ -18,29 +18,27 @@ namespace ChessTests
         [Fact]
         public void AppKeepsHistoryOfCommands()
         {
-            const string firstCommand = "Test command 1";
-            const string secondCommand = "Test command 2";
 
-            _app.Handle(new TestAppCommand(firstCommand));
-            _app.Handle(new TestAppCommand(secondCommand));
+            _app.Handle(new TestAppCommand1());
+            _app.Handle(new TestAppCommand2());
 
             Assert.Equal(2, _app.CommandHistory.Count());
-            Assert.Equal(firstCommand, _app.CommandHistory.First().CommandName);
-            Assert.Equal(secondCommand, _app.CommandHistory.Last().CommandName);
+            Assert.IsType<TestAppCommand1>(_app.CommandHistory.First());
+            Assert.IsType<TestAppCommand2>(_app.CommandHistory.Last());
         }
 
-        public class TestAppCommand : IAppCommand
+        public class TestAppCommand1 : IAppCommand
         {
-            public TestAppCommand(string commandName)
-            {
-                CommandName = commandName;
-            }
-
             public void Run(ChessApp app)
             {
             }
+        }
 
-            public string CommandName { get; }
+        public class TestAppCommand2 : IAppCommand
+        {
+            public void Run(ChessApp app)
+            {
+            }
         }
     }
 }

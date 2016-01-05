@@ -7,7 +7,5 @@
             app.Stop();
             app.Output.OnAppStopping();
         }
-
-        public string CommandName => "Stop App";
     }
 }

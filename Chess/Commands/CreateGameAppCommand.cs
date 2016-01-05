@@ -9,7 +9,5 @@ namespace Chess.Commands
             app.RegisterGame(game);
             app.Output.OnNewGameStarted(game);
         }
-
-        public string CommandName => "New Game";
     }
 }
