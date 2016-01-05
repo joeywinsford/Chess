@@ -1,4 +1,4 @@
-﻿namespace Chess
+﻿namespace Chess.Players
 {
     public enum PlayerColour
     {

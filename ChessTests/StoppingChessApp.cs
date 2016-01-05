@@ -18,7 +18,7 @@ namespace ChessTests
         [Fact]
         public void CanStopTheApp()
         {
-            _app.ReceiveInput(new StopAppCommand());
+            _app.Handle(new StopAppCommand());
             Assert.False(_app.IsRunning);
             Assert.Equal(1, _output.NumberOfStopCommands);
         }

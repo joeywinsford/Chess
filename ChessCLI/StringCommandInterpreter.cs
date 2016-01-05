@@ -1,6 +1,7 @@
 ﻿using System;
 using Chess;
 using Chess.Commands;
+using Chess.Players;
 
 namespace ChessCLI
 {

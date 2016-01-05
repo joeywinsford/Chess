@@ -1,5 +1,6 @@
 using Chess;
 using Chess.Commands;
+using Chess.Players;
 using Xunit;
 
 namespace ChessTests
@@ -15,17 +16,17 @@ namespace ChessTests
             _output = new TestOutput();
             var app = new ChessApp(_output);
 
-            app.ReceiveInput(new CreateGameAppCommand());
+            app.Handle(new CreateGameAppCommand());
             var latestGameName = _output.LatestGameName;
             var newGame = app.GetGame(latestGameName);
 
-            app.ReceiveInput(new JoinGameAppCommand(latestGameName, "denise", PlayerColour.Black));
-            app.ReceiveInput(new JoinGameAppCommand(latestGameName, "derek", PlayerColour.White));
+            app.Handle(new JoinGameAppCommand(latestGameName, "denise", PlayerColour.Black));
+            app.Handle(new JoinGameAppCommand(latestGameName, "derek", PlayerColour.White));
 
             _existingBlackPlayer = newGame.GetPlayer(PlayerColour.Black);
             _existingWhitePlayer = newGame.GetPlayer(PlayerColour.White);
 
-            app.ReceiveInput(new JoinGameAppCommand(latestGameName, "gary", PlayerColour.Black));
+            app.Handle(new JoinGameAppCommand(latestGameName, "gary", PlayerColour.Black));
         }
 
         [Fact]

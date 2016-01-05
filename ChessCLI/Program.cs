@@ -16,7 +16,7 @@ namespace ChessCLI
                 var command = interpreter.GetCommand(input);
                 if (command != null)
                 {
-                    app.ReceiveInput(command);
+                    app.Handle(command);
                 }
                 else
                 {

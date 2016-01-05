@@ -1,5 +1,6 @@
 ﻿using System;
 using Chess.Commands;
+using Chess.Players;
 using Nancy;
 
 namespace Chess.API
@@ -13,7 +14,7 @@ namespace Chess.API
 
             Post["new"] = _ =>
             {
-                app.ReceiveInput(new CreateGameAppCommand());
+                app.Handle(new CreateGameAppCommand());
                 return Response.AsJson(output.NewGame);
             };
 
@@ -26,7 +27,7 @@ namespace Chess.API
                 {
                     return HttpStatusCode.BadRequest;
                 }
-                app.ReceiveInput(new JoinGameAppCommand(gameId, playerName, colour));
+                app.Handle(new JoinGameAppCommand(gameId, playerName, colour));
                 return $"{playerName} joined game {gameId} as {colour}";
             };
         }

@@ -19,7 +19,7 @@ namespace Chess
 
         public bool IsRunning { get; private set; } = true;
 
-        public void ReceiveInput(IAppCommand command)
+        public void Handle(IAppCommand command)
         {
             CommandHistory.Add(command);
             command.Run(this);

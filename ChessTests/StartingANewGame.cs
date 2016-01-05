@@ -2,6 +2,7 @@
 using System.CodeDom;
 using Chess;
 using Chess.Commands;
+using Chess.Players;
 using Xunit;
 
 namespace ChessTests
@@ -17,7 +18,7 @@ namespace ChessTests
             var output = new TestOutput();
             _app = new ChessApp(output);
 
-            _app.ReceiveInput(new CreateGameAppCommand());
+            _app.Handle(new CreateGameAppCommand());
             _latestGameName = output.LatestGameName;
             _newGame = _app.GetGame(_latestGameName);
         }
@@ -43,8 +44,8 @@ namespace ChessTests
         [Fact]
         public void TwoPlayersCanJoinAnOpeningInANewGame()
         {
-            _app.ReceiveInput(new JoinGameAppCommand(_latestGameName, "denise", PlayerColour.Black));
-            _app.ReceiveInput(new JoinGameAppCommand(_latestGameName, "derek", PlayerColour.White));
+            _app.Handle(new JoinGameAppCommand(_latestGameName, "denise", PlayerColour.Black));
+            _app.Handle(new JoinGameAppCommand(_latestGameName, "derek", PlayerColour.White));
 
             var blackPlayer = _newGame.GetPlayer(PlayerColour.Black);
             Assert.IsType<PlayerBlack>(blackPlayer);

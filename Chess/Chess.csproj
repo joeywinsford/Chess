@@ -40,27 +40,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bishop.cs" />
+    <Compile Include="Pieces\Bishop.cs" />
     <Compile Include="Location.cs" />
+    <Compile Include="Pieces\Rook.cs" />
     <Compile Include="StandardBoard.cs" />
     <Compile Include="Commands\CreateGameAppCommand.cs" />
     <Compile Include="Commands\JoinGameAppCommand.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="IAppOutput.cs" />
-    <Compile Include="IPiece.cs" />
-    <Compile Include="IPlayer.cs" />
-    <Compile Include="King.cs" />
-    <Compile Include="Knight.cs" />
-    <Compile Include="Pawn.cs" />
-    <Compile Include="PlayerColour.cs" />
-    <Compile Include="PlayerOpening.cs" />
+    <Compile Include="Pieces\IPiece.cs" />
+    <Compile Include="Players\IPlayer.cs" />
+    <Compile Include="Pieces\King.cs" />
+    <Compile Include="Pieces\Knight.cs" />
+    <Compile Include="Pieces\Pawn.cs" />
+    <Compile Include="Players\PlayerColour.cs" />
+    <Compile Include="Players\PlayerOpening.cs" />
     <Compile Include="Commands\StopAppCommand.cs" />
     <Compile Include="Commands\IAppCommand.cs" />
-    <Compile Include="PlayerBlack.cs" />
-    <Compile Include="PlayerWhite.cs" />
+    <Compile Include="Players\PlayerBlack.cs" />
+    <Compile Include="Players\PlayerWhite.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ChessApp.cs" />
-    <Compile Include="Queen.cs" />
+    <Compile Include="Pieces\Queen.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

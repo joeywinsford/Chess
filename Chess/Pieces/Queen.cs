@@ -1,4 +1,6 @@
-﻿namespace Chess
+﻿using Chess.Players;
+
+namespace Chess.Pieces
 {
     public class Queen : IPiece
     {

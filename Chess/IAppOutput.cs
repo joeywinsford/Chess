@@ -1,3 +1,5 @@
+using Chess.Players;
+
 namespace Chess
 {
     public interface IAppOutput

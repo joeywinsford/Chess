@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using Chess;
 using Chess.Commands;
+using Chess.Pieces;
+using Chess.Players;
 using Xunit;
 
 namespace ChessTests
@@ -15,7 +17,7 @@ namespace ChessTests
             var output = new TestOutput();
             var app = new ChessApp(output);
 
-            app.ReceiveInput(new CreateGameAppCommand());
+            app.Handle(new CreateGameAppCommand());
             _newGame = app.GetGame(output.LatestGameName);
         }
 

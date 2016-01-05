@@ -1,10 +1,7 @@
-﻿namespace Chess
-{
-    public interface IPiece
-    {
-        PlayerColour Colour { get; }
-    }
+﻿using Chess.Players;
 
+namespace Chess.Pieces
+{
     public class Rook : IPiece
     {
         public Rook(PlayerColour colour)

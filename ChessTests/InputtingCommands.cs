@@ -21,8 +21,8 @@ namespace ChessTests
             const string firstCommand = "Test command 1";
             const string secondCommand = "Test command 2";
 
-            _app.ReceiveInput(new TestAppCommand(firstCommand));
-            _app.ReceiveInput(new TestAppCommand(secondCommand));
+            _app.Handle(new TestAppCommand(firstCommand));
+            _app.Handle(new TestAppCommand(secondCommand));
 
             Assert.Equal(2, _app.CommandHistory.Count());
             Assert.Equal(firstCommand, _app.CommandHistory.First().CommandName);

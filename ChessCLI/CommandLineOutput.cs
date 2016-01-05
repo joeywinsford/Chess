@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Chess;
+using Chess.Players;
 
 namespace ChessCLI
 {

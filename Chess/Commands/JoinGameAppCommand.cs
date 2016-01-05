@@ -1,4 +1,6 @@
-﻿namespace Chess.Commands
+﻿using Chess.Players;
+
+namespace Chess.Commands
 {
     public class JoinGameAppCommand : IAppCommand
     {
